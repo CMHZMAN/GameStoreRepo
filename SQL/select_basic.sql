@@ -3,6 +3,19 @@ SELECT * FROM Kund WHERE Ort = 'Stockholm'
 
 SELECT Namn,Adress FROM Kund WHERE Ort = 'Uppsala'
 
+/*
+LINQ version: 
+
+var result = db.Kund
+    .Where(k => k.Ort.Trim() == "Uppsala")
+    .Select(k => new
+    {
+        k.Namn,
+        k.Adress
+    });
+
+
+*/
 
 /* Order by  */
 
@@ -21,6 +34,7 @@ var result = Games
 SELECT * from Games WHERE Genre LIKE 'Open World'
 
 SELECT * from Games WHERE Genre LIKE 'Action%'
+
 
 /* Group BY  */
 SELECT ProduktTyp,COUNT(1) as AntalSpel 
