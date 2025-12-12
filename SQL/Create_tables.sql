@@ -37,10 +37,10 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[GameDev](
 	[PK_Dev] [int] NOT NULL,
-	[Namn] [nchar](10) NULL,
-	[Stad] [nchar](10) NULL,
-	[Telefon] [nchar](10) NULL,
-	[Email] [nchar](10) NULL,
+	[Namn] [varchar](50) NULL,
+	[Stad] [varchar](50) NULL,
+	[Telefon] [varchar](50) NULL,
+	[Email] [varchar](50) NULL,
  CONSTRAINT [PK_GameDev] PRIMARY KEY CLUSTERED 
 (
 	[PK_Dev] ASC
@@ -75,11 +75,11 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Kund](
 	[PK_Kund] [int] NOT NULL,
-	[Namn] [nchar](10) NULL,
-	[Adress] [nchar](10) NULL,
-	[Postnummer] [nchar](10) NULL,
-	[Ort] [nchar](10) NULL,
-	[Mobil] [nchar](10) NULL,
+	[Namn] [varchar](50) NULL,
+	[Adress] [varchar](50) NULL,
+	[Postnummer] [varchar](50) NULL,
+	[Ort] [varchar](50) NULL,
+	[Mobil] [varchar](50) NULL,
  CONSTRAINT [PK_Kund] PRIMARY KEY CLUSTERED 
 (
 	[PK_Kund] ASC
@@ -126,6 +126,11 @@ ALTER TABLE [dbo].[Games]  WITH CHECK ADD  CONSTRAINT [FK_Games_Utgivare] FOREIG
 REFERENCES [dbo].[Utgivare] ([PK_Utg])
 GO
 ALTER TABLE [dbo].[Games] CHECK CONSTRAINT [FK_Games_Utgivare]
+GO
+ALTER TABLE [dbo].[Games]  WITH CHECK ADD  CONSTRAINT [CK_Games_Pris_NonNegative] CHECK  (([Pris]>=(0.00)))
+GO
+
+ALTER TABLE [dbo].[Games] CHECK CONSTRAINT [CK_Games_Pris_NonNegative]
 GO
 USE [master]
 GO
